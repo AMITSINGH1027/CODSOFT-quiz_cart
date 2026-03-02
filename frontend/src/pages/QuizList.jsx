@@ -9,8 +9,10 @@ function QuizList() {
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/quizzes");
-        setQuizzes(res.data);
+const res = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/quizzes`
+);
+setQuizzes(res.data);
       } catch (err) {
         console.log(err);
       }

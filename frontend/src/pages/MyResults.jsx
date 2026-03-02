@@ -8,14 +8,14 @@ function MyResults() {
     const fetchResults = async () => {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        "http://localhost:5000/api/results/my",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+const res = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/results/my`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       setResults(res.data);
     };

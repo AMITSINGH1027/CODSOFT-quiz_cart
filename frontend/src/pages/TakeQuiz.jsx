@@ -34,15 +34,15 @@ function TakeQuiz() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.post(
-        `http://localhost:5000/api/quizzes/${id}/submit`,
-        { answers },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+const res = await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/quizzes/${id}/submit`,
+  { answers },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       navigate("/result", { state: res.data });
     } catch (err) {

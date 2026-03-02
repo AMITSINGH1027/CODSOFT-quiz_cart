@@ -43,15 +43,15 @@ export default function CreateQuiz() {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.post(
-        "http://localhost:5000/api/quizzes",
-        { title, description, questions },
-        {
-          headers: {
-            Authorization: token
-          }
-        }
-      );
+await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/quizzes`,
+  { title, description, questions },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
       alert("Quiz Created Successfully!");
       navigate("/quizzes");

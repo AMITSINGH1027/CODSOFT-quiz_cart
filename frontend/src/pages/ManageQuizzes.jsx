@@ -8,12 +8,12 @@ function ManageQuizzes() {
 
   useEffect(() => {
     const fetchQuizzes = async () => {
-      const res = await axios.get(
-        "http://localhost:5000/api/admin/quiz-analytics",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+const res = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/admin/quiz-analytics`,
+  {
+    headers: { Authorization: `Bearer ${token}` },
+  }
+);
 
       setQuizzes(res.data);
     };

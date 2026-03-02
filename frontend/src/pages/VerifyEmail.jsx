@@ -10,9 +10,9 @@ function VerifyEmail() {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        await axios.get(
-          `http://localhost:5000/api/auth/verify/${token}`
-        );
+await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/auth/verify/${token}`
+);
 
         setMessage("✅ Email verified successfully!");
 
