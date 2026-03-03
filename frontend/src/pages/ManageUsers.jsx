@@ -35,13 +35,13 @@ function ManageUsers() {
   };
 
   const changeRole = async (id, newRole) => {
-await axios.put(
-  `${import.meta.env.VITE_API_URL}/api/admin/users/${id}/role`,
-  { role: newRole },
-  {
-    headers: { Authorization: `Bearer ${token}` },
-  }
-);
+    await axios.put(
+      `${import.meta.env.VITE_API_URL}/api/admin/users`,
+      { role: newRole },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
     fetchUsers();
   };
@@ -49,7 +49,7 @@ await axios.put(
   return (
     <AdminLayout>
       <div className="p-8 text-white">
-        <h2 className="text-3xl text-black font-bold mb-8">
+        <h2 className="text-3xl font-bold mb-8">
           👥 Manage Users
         </h2>
 
