@@ -12,8 +12,8 @@ function TakeQuiz() {
     const fetchQuiz = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/quizzes/${id}`
-        );
+  `${import.meta.env.VITE_API_URL}/api/quizzes/${id}`
+);
         setQuiz(res.data);
         setAnswers(new Array(res.data.questions.length).fill(null));
       } catch (err) {
@@ -46,9 +46,12 @@ const res = await axios.post(
 
       navigate("/result", { state: res.data });
     } catch (err) {
-      console.error("Error submitting quiz:", err);
-      alert("Error submitting quiz");
-    }
+  console.log("Full Error:", err);
+  console.log("Server Error:", err.response?.data);
+  console.log("Message:", err.message);
+
+  alert(err.response?.data?.message || "Error submitting quiz");
+}
   };
 
   if (!quiz)
