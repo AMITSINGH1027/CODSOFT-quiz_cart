@@ -4,17 +4,24 @@ import AdminLayout from "../components/AdminLayout";
 
 function ManageUsers() {
   const [users, setUsers] = useState([]);
-
   const token = localStorage.getItem("token");
 
+  const API = import.meta.env.VITE_API_URL;
+
   const fetchUsers = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/admin/users",
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    setUsers(res.data);
+    try {
+      const res = await axios.get(
+        `${API}/api/admin/users`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUsers(res.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
   };
 
   useEffect(() => {
@@ -24,26 +31,36 @@ function ManageUsers() {
   const deleteUser = async (id) => {
     if (!window.confirm("Delete this user?")) return;
 
-    await axios.delete(
-      `http://localhost:5000/api/admin/users/${id}`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-
-    fetchUsers();
+    try {
+      await axios.delete(
+        `${API}/api/admin/users/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      fetchUsers();
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
   const changeRole = async (id, newRole) => {
-    await axios.put(
-      `${import.meta.env.VITE_API_URL}/api/admin/users`,
-      { role: newRole },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-
-    fetchUsers();
+    try {
+      await axios.put(
+        `${API}/api/admin/users/${id}`,
+        { role: newRole },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      fetchUsers();
+    } catch (error) {
+      console.error("Error updating role:", error);
+    }
   };
 
   return (
