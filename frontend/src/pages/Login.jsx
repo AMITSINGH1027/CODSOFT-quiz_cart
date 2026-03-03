@@ -2,11 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/login3d.png";
+import { Eye, EyeOff } from "lucide-react";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -74,14 +76,24 @@ className="w-full p-3 rounded-md bg-gray-800 text-white placeholder-gray-400 foc
   </span>
 </p>
             </div>
+<div className="relative">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="************"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className="w-full p-3 pr-12 rounded-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+    required
+  />
 
-            <input
-              type="password"
-              placeholder="************"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-className="w-full p-3 rounded-md bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"              required
-            />
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition"
+  >
+    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+  </button>
+</div>
           </div>
 
           <button
