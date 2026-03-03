@@ -7,8 +7,10 @@ const app = express();
 
 // ✅ Proper CORS (ONLY ONCE, BEFORE ROUTES)
 app.use(cors({
-  origin: "http://localhost:5173",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: [
+    "http://localhost:5173",
+    "https://quizcart-frontend.onrender.com"
+  ],
   credentials: true
 }));
 
