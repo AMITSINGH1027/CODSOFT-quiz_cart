@@ -1,22 +1,25 @@
 const nodemailer = require("nodemailer");
 
-const sendEmail = async ({ to, subject, text }) => {
+const sendEmail = async (options) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
-  const info = await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to,
-    subject,
-    text,
+  await transporter.sendMail({
+    from: `"Quiz Cart" <${process.env.EMAIL_USER}>`,
+    to: options.to,
+    subject: options.subject,
+    text: options.text,
   });
-
-  console.log("Email sent:", info.response);
 };
 
 module.exports = sendEmail;
