@@ -66,7 +66,7 @@ function ManageUsers() {
   return (
     <AdminLayout>
       <div className="p-8 text-white">
-        <h2 className="text-3xl font-bold mb-8">
+        <h2 className="text-3xl text-black font-bold mb-8">
           👥 Manage Users
         </h2>
 
