@@ -5,6 +5,7 @@ const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
 
 // REGISTER
+console.log("Register API called");
 exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -25,6 +26,9 @@ exports.register = async (req, res) => {
 
    const verificationLink =
 `${process.env.CLIENT_URL}/verify/${verificationToken}`;
+
+console.log("About to send email...");
+console.log("Sending email to:", email);
 
     await sendEmail({
       to: email,
