@@ -26,109 +26,108 @@ function App() {
 
       <Navbar />
 
-      <Routes>
-        <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-<Route path="/verify/:token" element={<VerifyEmail />} />
-        <Route path="/register" element={<Register />} />
-<Route path="/forgot-password" element={<ForgotPassword />} />
-<Route path="/admin" element={<AdminDashboard />} />
-<Route path="/admin/users" element={<ManageUsers />} />
-<Route path="/admin/quizzes" element={<ManageQuizzes />} />
- <Route path="/" element={<Login />} />
+<Routes>
+
+  <Route path="/" element={<Login />} />
   <Route path="/login" element={<Login />} />
   <Route path="/register" element={<Register />} />
-  <Route path="/admin/*" element={<AdminLayout />} />
-        <Route
-          path="/quizzes"
-          element={
-            <ProtectedRoute>
-              <QuizList />
-            </ProtectedRoute>
-          }
-        />
+  <Route path="/forgot-password" element={<ForgotPassword />} />
+  <Route path="/reset-password/:token" element={<ResetPassword />} />
+  <Route path="/verify/:token" element={<VerifyEmail />} />
 
-        <Route
-          path="/quiz/:id"
-          element={
-            <ProtectedRoute>
-              <TakeQuiz />
-            </ProtectedRoute>
-          }
-        />
+  <Route
+    path="/quizzes"
+    element={
+      <ProtectedRoute>
+        <QuizList />
+      </ProtectedRoute>
+    }
+  />
 
-        <Route
-          path="/result"
-          element={
-            <ProtectedRoute>
-              <Result />
-            </ProtectedRoute>
-          }
-        />
+  <Route
+    path="/quiz/:id"
+    element={
+      <ProtectedRoute>
+        <TakeQuiz />
+      </ProtectedRoute>
+    }
+  />
 
-        <Route
-          path="/results"
-          element={
-            <ProtectedRoute>
-              <MyResults />
-            </ProtectedRoute>
-          }
-        />
+  <Route
+    path="/result"
+    element={
+      <ProtectedRoute>
+        <Result />
+      </ProtectedRoute>
+    }
+  />
 
-          <Route
-  path="/create"
-  element={
-    <ProtectedRoute>
-      <CreateQuiz />
-    </ProtectedRoute>
-  }
-/>
+  <Route
+    path="/results"
+    element={
+      <ProtectedRoute>
+        <MyResults />
+      </ProtectedRoute>
+    }
+  />
 
-<Route
-  path="/admin"
-  element={
-    <AdminRoute>
-      <AdminDashboard />
-    </AdminRoute>
-  }
-/>
+  <Route
+    path="/create"
+    element={
+      <ProtectedRoute>
+        <CreateQuiz />
+      </ProtectedRoute>
+    }
+  />
 
-<Route
-  path="/admin/users"
-  element={
-    <AdminRoute>
-      <ManageUsers />
-    </AdminRoute>
-  }
-/>
+  {/* Admin Routes */}
+  <Route
+    path="/admin"
+    element={
+      <AdminRoute>
+        <AdminDashboard />
+      </AdminRoute>
+    }
+  />
 
-<Route
-  path="/admin/quizzes"
-  element={
-    <AdminRoute>
-      <ManageQuizzes />
-    </AdminRoute>
-  }
-/>
+  <Route
+    path="/admin/users"
+    element={
+      <AdminRoute>
+        <ManageUsers />
+      </AdminRoute>
+    }
+  />
 
-<Route
-  path="/admin/results"
-  element={
-    <AdminRoute>
-      <ResultsAnalytics />
-    </AdminRoute>
-  }
-/>
+  <Route
+    path="/admin/quizzes"
+    element={
+      <AdminRoute>
+        <ManageQuizzes />
+      </AdminRoute>
+    }
+  />
 
-<Route
-  path="/admin/settings"
-  element={
-    <AdminRoute>
-      <Settings />
-    </AdminRoute>
-  }
-/>
-      </Routes>
+  <Route
+    path="/admin/results"
+    element={
+      <AdminRoute>
+        <ResultsAnalytics />
+      </AdminRoute>
+    }
+  />
+
+  <Route
+    path="/admin/settings"
+    element={
+      <AdminRoute>
+        <Settings />
+      </AdminRoute>
+    }
+  />
+
+</Routes>
+
       </div>
     </>
   );
